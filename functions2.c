@@ -125,16 +125,16 @@ int print_reverse(va_list types, char buffer[], int flags,
 	{
 		UNUSED(precision);
 
-		str = ")Null(";
+		str = "(Null)";
 	}
-	for (i = 0; str[i]; i++)
+	for (i = 0; str[i] != '\0'; i++)
+		count++;
 
 	for (i = i - 1; i >= 0; i--)
 	{
 		char z = str[i];
 
-		write(1, &z, 1);
-		count++;
+		putchar(z);
 	}
 	return (count);
 }
@@ -160,7 +160,7 @@ int print_rot13string(va_list types, char buffer[], int flags,
 	unsigned int i, j;
 	int count = 0;
 	char in[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char out[] = "NOPQRSTBZkWWuUHNahSjQZtmeoQYjMvmHe1WYuCTbcdefghijklm";
+	char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
 	str = va_arg(types, char *);
 	UNUSED(buffer);
